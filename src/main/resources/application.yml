@@ -52,7 +52,7 @@ spring:
     gateway:
       routes:
         - id: Admin
-          uri: http://admin:8080
+          uri: http://user5-admin:8080
           predicates:
             - Path=/menus/** 
         - id: Store
@@ -68,11 +68,11 @@ spring:
           predicates:
             - Path=/payments/**
         - id: menuScore
-          uri: http://menuscore:8080
+          uri: http://user5-menuscore:8080
           predicates:
             - Path=/menuscore/**
         - id: view
-          uri: http://view:8080
+          uri: http://user5-view:8080
           predicates:
             - Path=/views/**
       globalcors:

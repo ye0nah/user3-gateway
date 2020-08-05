@@ -1,0 +1,90 @@
+server:
+  port: 8080
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+      routes:
+        - id: Admin
+          uri: http://localhost:8081
+          predicates:
+            - Path=/menus/** 
+        - id: Store
+          uri: http://localhost:8082
+          predicates:
+            - Path=/stores/**, /orders/**, /myorder/**
+        - id: Cart
+          uri: http://localhost:8083
+          predicates:
+            - Path=/carts/**, /mycart/**
+        - id: Payment
+          uri: http://localhost:8084
+          predicates:
+            - Path=/payments/**
+        - id: menuScore
+          uri: http://localhost:8085
+          predicates:
+            - Path=/menuscore/**
+        - id: view
+          uri: http://localhost:8086
+          predicates:
+            - Path=/views/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: Admin
+          uri: http://admin:8080
+          predicates:
+            - Path=/menus/** 
+        - id: Store
+          uri: http://Store:8080
+          predicates:
+            - Path=/menus/**,/orders/** 
+        - id: Cart
+          uri: http://Cart:8080
+          predicates:
+            - Path=/carts/**,/myOrders/**
+        - id: Payment
+          uri: http://Payment:8080
+          predicates:
+            - Path=/payments/**
+        - id: menuScore
+          uri: http://menuscore:8080
+          predicates:
+            - Path=/menuscore/**
+        - id: view
+          uri: http://view:8080
+          predicates:
+            - Path=/views/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080

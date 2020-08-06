@@ -27,7 +27,7 @@ spring:
         - id: menuScore
           uri: http://localhost:8085
           predicates:
-            - Path=/menuscore/**
+            - Path=/menuscores/**
         - id: view
           uri: http://localhost:8086
           predicates:
@@ -70,7 +70,7 @@ spring:
         - id: menuScore
           uri: http://user3-menuscore:8080
           predicates:
-            - Path=/menuscore/**
+            - Path=/menuscores/**
         - id: view
           uri: http://user3-view:8080
           predicates:
